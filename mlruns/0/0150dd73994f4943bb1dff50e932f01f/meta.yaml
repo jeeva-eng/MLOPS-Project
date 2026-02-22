@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/0/0150dd73994f4943bb1dff50e932f01f/artifacts
+end_time: 1771760210100
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0150dd73994f4943bb1dff50e932f01f
+run_name: resilient-hawk-362
+run_uuid: 0150dd73994f4943bb1dff50e932f01f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771760200247
+status: 3
+tags: []
+user_id: jeeva

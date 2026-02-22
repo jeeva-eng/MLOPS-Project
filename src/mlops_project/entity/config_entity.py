@@ -30,3 +30,16 @@ class ModelTrainerConfig:
     alpha: float
     l1_ratio: float
     target_columns: str
+
+from dataclasses import dataclass
+from pathlib import Path
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir:Path
+    test_data_path:Path
+    model_path:Path
+    all_params:dict
+    metric_file_name:Path
+    target_columns:str
+    mlflow_uri:str    

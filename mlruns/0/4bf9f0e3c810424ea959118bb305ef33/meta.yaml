@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/0/4bf9f0e3c810424ea959118bb305ef33/artifacts
+end_time: 1771759194168
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4bf9f0e3c810424ea959118bb305ef33
+run_name: intrigued-newt-863
+run_uuid: 4bf9f0e3c810424ea959118bb305ef33
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771759185156
+status: 3
+tags: []
+user_id: jeeva

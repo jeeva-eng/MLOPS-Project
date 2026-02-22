@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/0/b769ef98b0024e369404780fb1f508df/artifacts
+end_time: 1771759161664
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b769ef98b0024e369404780fb1f508df
+run_name: wistful-shrike-12
+run_uuid: b769ef98b0024e369404780fb1f508df
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771759151581
+status: 3
+tags: []
+user_id: jeeva
