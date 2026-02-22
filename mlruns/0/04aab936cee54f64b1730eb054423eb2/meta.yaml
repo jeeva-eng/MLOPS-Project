@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/0/04aab936cee54f64b1730eb054423eb2/artifacts
+end_time: 1771761186619
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 04aab936cee54f64b1730eb054423eb2
+run_name: unruly-shrimp-624
+run_uuid: 04aab936cee54f64b1730eb054423eb2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771761176969
+status: 3
+tags: []
+user_id: jeeva

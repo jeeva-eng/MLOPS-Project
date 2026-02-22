@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/0/26d7c00d01234e8c915d0410f20cca08/artifacts
+end_time: 1771764635602
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 26d7c00d01234e8c915d0410f20cca08
+run_name: bedecked-ray-446
+run_uuid: 26d7c00d01234e8c915d0410f20cca08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771764624866
+status: 3
+tags: []
+user_id: jeeva

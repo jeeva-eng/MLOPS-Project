@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Quality AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="card">
+    <h1>🍷 Wine Quality Predictor</h1>
+    <p> Wine quality analysis</p>
+
+    <form action="/predict" method="post">
+
+        <div class="grid">
+            <input type="number" step="any" name="fixed_acidity" placeholder="Fixed Acidity" required>
+            <input type="number" step="any" name="volatile_acidity" placeholder="Volatile Acidity" required>
+            <input type="number" step="any" name="citric_acid" placeholder="Citric Acid" required>
+            <input type="number" step="any" name="residual_sugar" placeholder="Residual Sugar" required>
+            <input type="number" step="any" name="chlorides" placeholder="Chlorides" required>
+            <input type="number" step="any" name="free_sulfur_dioxide" placeholder="Free SO₂" required>
+            <input type="number" step="any" name="total_sulfur_dioxide" placeholder="Total SO₂" required>
+            <input type="number" step="any" name="density" placeholder="Density" required>
+            <input type="number" step="any" name="pH" placeholder="pH" required>
+            <input type="number" step="any" name="sulphates" placeholder="Sulphates" required>
+            <input type="number" step="any" name="alcohol" placeholder="Alcohol %" required>
+        </div>
+
+        <button type="submit">Predict Quality</button>
+    </form>
+</div>
+
+</body>
+</html>

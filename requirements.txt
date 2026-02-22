@@ -1,4 +1,4 @@
-pandas
+pandas 
 mlflow==2.2.2
 notebook
 numpy
@@ -9,7 +9,7 @@ pyYAML
 tqdm
 ensure==1.0.2
 joblib
-types-pyYAML
-fastapi
-uvicorn
--e.
+types-PyYAML
+Flask
+Flask-Cors
+-e .
