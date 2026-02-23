@@ -2,35 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wine Quality AI</title>
+    <title>Wine Quality Prediction | ML Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<div class="background"></div>
+<div class="main-container">
 
-<div class="card">
-    <h1>🍷 Wine Quality Predictor</h1>
-    <p> Wine quality analysis</p>
+    <!-- HEADER -->
+    <header class="project-header">
+        <h1>🍷 Wine Quality Prediction</h1>
+    </header>
 
-    <form action="/predict" method="post">
-
-        <div class="grid">
-            <input type="number" step="any" name="fixed_acidity" placeholder="Fixed Acidity" required>
-            <input type="number" step="any" name="volatile_acidity" placeholder="Volatile Acidity" required>
-            <input type="number" step="any" name="citric_acid" placeholder="Citric Acid" required>
-            <input type="number" step="any" name="residual_sugar" placeholder="Residual Sugar" required>
-            <input type="number" step="any" name="chlorides" placeholder="Chlorides" required>
-            <input type="number" step="any" name="free_sulfur_dioxide" placeholder="Free SO₂" required>
-            <input type="number" step="any" name="total_sulfur_dioxide" placeholder="Total SO₂" required>
-            <input type="number" step="any" name="density" placeholder="Density" required>
-            <input type="number" step="any" name="pH" placeholder="pH" required>
-            <input type="number" step="any" name="sulphates" placeholder="Sulphates" required>
-            <input type="number" step="any" name="alcohol" placeholder="Alcohol %" required>
+    <!-- MODEL INFO SECTION -->
+    <section class="model-info">
+        <div class="info-card">
+            <h3>Model Type</h3>
+            <p>Random Forest Regressor</p>
         </div>
 
-        <button type="submit">Predict Quality</button>
-    </form>
+        <div class="info-card">
+            <h3>Model Accuracy (R² Score)</h3>
+            <p>0.89</p>
+        </div>
+
+    </section>
+
+    <!-- FORM CARD -->
+    <div class="card">
+        <h2>Enter Chemical Properties</h2>
+
+        <form action="/predict" method="post">
+
+            <div class="form-grid">
+
+                <input type="number" step="any" name="fixed_acidity" placeholder="Fixed Acidity (e.g. 7.4)" required>
+                <input type="number" step="any" name="volatile_acidity" placeholder="Volatile Acidity (e.g. 0.70)" required>
+                <input type="number" step="any" name="citric_acid" placeholder="Citric Acid (e.g. 0.00)" required>
+                <input type="number" step="any" name="residual_sugar" placeholder="Residual Sugar (e.g. 1.9)" required>
+                <input type="number" step="any" name="chlorides" placeholder="Chlorides (e.g. 0.076)" required>
+                <input type="number" step="any" name="free_sulfur_dioxide" placeholder="Free SO₂ (e.g. 11)" required>
+                <input type="number" step="any" name="total_sulfur_dioxide" placeholder="Total SO₂ (e.g. 34)" required>
+                <input type="number" step="any" name="density" placeholder="Density (e.g. 0.9978)" required>
+                <input type="number" step="any" name="pH" placeholder="pH (e.g. 3.51)" required>
+                <input type="number" step="any" name="sulphates" placeholder="Sulphates (e.g. 0.56)" required>
+                <input type="number" step="any" name="alcohol" placeholder="Alcohol % (e.g. 9.4)" required>
+
+            </div>
+
+            <button type="submit" class="primary-btn">🚀 Predict Quality</button>
+
+        </form>
+    </div>
+
+
 </div>
 
 </body>
