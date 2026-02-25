@@ -32,7 +32,17 @@ def index():
             sulphates =float(request.form['sulphates'])
             alcohol =float(request.form['alcohol'])
        
-            data=[fixed_acidity,volatile_acidity,citric_acid,residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,pH,alcohol,density,sulphates]
+            data=[fixed_acidity,
+                  volatile_acidity,
+                  citric_acid,
+                  residual_sugar,
+                  chlorides,
+                  free_sulfur_dioxide,
+                  total_sulfur_dioxide,
+                  density,
+                  pH,
+                  sulphates,
+                  alcohol]  
             data=np.array(data).reshape(1,11)
 
             obj=PredictionPipeline()

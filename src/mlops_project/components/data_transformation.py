@@ -1,35 +1,86 @@
 import os
-from src.mlops_project import logger
-from sklearn.model_selection import train_test_split
 import pandas as pd
-from src.mlops_project.entity.config_entity import DataTransformationConfig
+import joblib
 
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+from src.mlops_project import logger
+from src.mlops_project.entity.config_entity import DataTransformationConfig
 
 
 class DataTransformation:
     def __init__(self, config: DataTransformationConfig):
         self.config = config
 
-    
-    ## Note: You can add different data transformation techniques such as Scaler, PCA and all
-    #You can perform all kinds of EDA in ML cycle here before passing this data to the model
-
-    # I am only adding train_test_spliting cz this data is already cleaned up
-
-
     def train_test_spliting(self):
+
         data = pd.read_csv(self.config.data_path)
 
-        # Split the data into training and test sets. (0.75, 0.25) split.
-        train, test = train_test_split(data)
+        train, test = train_test_split(data, test_size=0.25, random_state=42)
 
-        train.to_csv(os.path.join(self.config.root_dir, "train.csv"),index = False)
-        test.to_csv(os.path.join(self.config.root_dir, "test.csv"),index = False)
+        train.to_csv(os.path.join(self.config.root_dir, "train.csv"), index=False)
+        test.to_csv(os.path.join(self.config.root_dir, "test.csv"), index=False)
 
-        logger.info("Splited data into training and test sets")
-        logger.info(train.shape)
-        logger.info(test.shape)
+        logger.info("Splitted data into training and test sets")
+        logger.info(f"Train shape: {train.shape}")
+        logger.info(f"Test shape: {test.shape}")
 
-        print(train.shape)
-        print(test.shape)
-        
+        return train, test
+
+
+    def get_data_transformer_object(self, train_df):
+
+        target_column = self.config.target_column
+
+        input_features = train_df.drop(columns=[target_column])
+
+        numerical_columns = input_features.select_dtypes(include=["int64", "float64"]).columns.tolist()
+
+        logger.info(f"Numerical Columns: {numerical_columns}")
+
+        num_pipeline = Pipeline(
+            steps=[
+                ("scaler", StandardScaler())
+            ]
+        )
+
+        preprocessor = ColumnTransformer(
+            transformers=[
+                ("num_pipeline", num_pipeline, numerical_columns)
+            ]
+        )
+
+        return preprocessor
+
+
+    def initiate_data_transformation(self):
+
+        train_df, test_df = self.train_test_spliting()
+
+        target_column = self.config.target_column
+
+        preprocessor = self.get_data_transformer_object(train_df)
+
+        input_train = train_df.drop(columns=[target_column])
+        target_train = train_df[target_column]
+
+        input_test = test_df.drop(columns=[target_column])
+        target_test = test_df[target_column]
+
+        input_train_arr = preprocessor.fit_transform(input_train)
+        input_test_arr = preprocessor.transform(input_test)
+
+        # Save preprocessor
+        joblib.dump(preprocessor, os.path.join(self.config.root_dir, "preprocessor.pkl"))
+
+        logger.info("Preprocessor saved successfully")
+
+        return (
+            input_train_arr,
+            target_train,
+            input_test_arr,
+            target_test
+        )

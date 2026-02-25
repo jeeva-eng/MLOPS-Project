@@ -3,99 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Wine Quality Result</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Segoe UI", sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a002b, #240046, #3c096c);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card {
-            width: 500px;
-            padding: 50px;
-            border-radius: 20px;
-            background: #1e1e2f;
-            color: white;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: #b0b0c3;
-            margin-bottom: 30px;
-        }
-
-        .score {
-    font-size: 70px;
-    font-weight: bold;
-    margin-bottom: 20px;
-
-    background: linear-gradient(90deg, #7b2cbf, #9d4edd);
-
-    /* Standard property */
-    background-clip: text;
-
-    /* Vendor prefix for Safari/Chrome */
-    -webkit-background-clip: text;
-
-    /* Required to make text transparent */
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-}
-
-        .quality {
-            margin-bottom: 30px;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .good { color: #00ff99; }
-        .average { color: #ffd700; }
-        .poor { color: #ff4d4d; }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            border-radius: 12px;
-            text-decoration: none;
-            background: linear-gradient(90deg, #7b2cbf, #9d4edd);
-            color: white;
-            font-weight: 600;
-            transition: 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(157,78,221,0.4);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="result-page">
 
-<div class="card">
+<div class="result-card">
     <h1>🍷 Wine Quality Prediction</h1>
-    <p class="subtitle">AI Model Analysis Result</p>
+    <p class="subtitle"> Model Analysis Result</p>
 
     <div class="score">{{ prediction }}</div>
 

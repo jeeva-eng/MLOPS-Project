@@ -18,8 +18,9 @@ class DataValidationConfig:
 
 @dataclass(frozen=True)
 class DataTransformationConfig:
-    root_dir:Path
-    data_path:Path    
+    root_dir: Path
+    data_path: Path
+    target_column: str
 
 @dataclass(frozen=True)
 class ModelTrainerConfig:
@@ -30,6 +31,9 @@ class ModelTrainerConfig:
     alpha: float
     l1_ratio: float
     target_columns: str
+
+    random_forest_params: dict
+    gradient_boosting_params: dict
 
 from dataclasses import dataclass
 from pathlib import Path

@@ -18,7 +18,7 @@ class ModelTrainerTrainingPipeline:
 
 if __name__ =='__main__':
     try:
-        logger.info(f">>>> syge{STAGE_NAME} started <<<<<")
+        logger.info(f">>>> stage{STAGE_NAME} started <<<<<")
         obj=ModelTrainerTrainingPipeline()
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx========x")
