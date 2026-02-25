@@ -63,9 +63,12 @@ class ModelTrainer:
         logger.info(f"Best Model Score: {best_score}")
 
         # Save Best Model
-        joblib.dump(
-            best_model,
-            os.path.join(self.config.root_dir, self.config.model_name)
-        )
+        # Save All Models
+        for model_name, model in models.items():
+            model_path = os.path.join(
+                self.config.root_dir,
+                f"{model_name}.joblib"
+            )
+            joblib.dump(model, model_path)
 
-        logger.info("Best model saved successfully.")
+        logger.info("All models saved successfully.")
