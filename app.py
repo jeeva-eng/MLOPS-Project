@@ -51,7 +51,7 @@ def index():
             return render_template('results.html',prediction=round(float(predict[0]),2))
         except Exception as e:
             print('The Exception message is :',e)
-            return 'something is wrong'
+            return str(e)
         
 
     else:
