@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/881380727955219538/be4b9b3c571e4548a50d03a4bbf9f295/artifacts
+end_time: 1772274871305
+entry_point_name: ''
+experiment_id: '881380727955219538'
+lifecycle_stage: active
+run_id: be4b9b3c571e4548a50d03a4bbf9f295
+run_name: GradientBoosting
+run_uuid: be4b9b3c571e4548a50d03a4bbf9f295
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772274867249
+status: 3
+tags: []
+user_id: jeeva

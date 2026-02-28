@@ -4,8 +4,8 @@
 ## Model Trainer
 
 elasticnet:
-  alpha: 0.2
-  l1_ratio: 0.3
+  alpha: 0.8
+  l1_ratio: 0.9
   random_state: 42
 
 random_forest:
