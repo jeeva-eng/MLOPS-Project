@@ -51,12 +51,12 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         data_transformation_config = DataTransformationConfig(
-            root_dir=config.root_dir,
-            data_path=config.data_path,
+        root_dir=config.root_dir,
+        data_path=config.data_path,
+        target_column=config.target_column
         )
 
         return data_transformation_config
-    
 
     
     def get_model_trainer_config(self) -> ModelTrainerConfig: 
@@ -67,34 +67,37 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         model_trainer_config = ModelTrainerConfig(
-             root_dir=config.root_dir,
-             train_data_path=config.train_data_path,
-             test_data_path=config.test_data_path,
-             model_name=config.model_name,
+    root_dir=config.root_dir,
+    train_data_path=config.train_data_path,
+    test_data_path=config.test_data_path,
+    model_name=config.model_name,
 
-             alpha=params.elasticnet.alpha,
-             l1_ratio=params.elasticnet.l1_ratio,
+    alpha=params.elasticnet.alpha,
+    l1_ratio=params.elasticnet.l1_ratio,
 
-             target_columns=schema.name,
+    target_columns=schema.name,
 
-             random_forest_params=params.random_forest,
-             gradient_boosting_params=params.gradient_boosting
-        )   
+    random_forest_params=params.random_forest,
+    gradient_boosting_params=params.gradient_boosting  
+
+    )   
 
         return model_trainer_config 
     
 
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
-        config=self.config.model_evaluation
-        params=self.params.ElasticNet
-        schema=self.schema.TARGET_COLUMNS
+
+        config = self.config.model_evaluation
+        params = self.params
+        schema = self.schema.TARGET_COLUMNS
 
         create_directories([config.root_dir])
 
-        model_evaluation_config=ModelEvaluationConfig(
+        model_evaluation_config = ModelEvaluationConfig(
             root_dir=config.root_dir,
+            train_data_path=config.train_data_path,
             test_data_path=config.test_data_path,
-            model_path=config.model_path,
+            model_path=Path(config.model_path),
             all_params=params,
             metric_file_name=config.metric_file_name,
             target_columns=schema.name,

@@ -1,13 +1,16 @@
-import pandas as pd
 import os
 import joblib
+import pandas as pd
 
-from src.mlops_project import logger
-from src.mlops_project.entity.config_entity import ModelTrainerConfig
+import mlflow
+import mlflow.sklearn
 
 from sklearn.linear_model import LinearRegression, ElasticNet
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_squared_error
+
+from src.mlops_project import logger
+from src.mlops_project.entity.config_entity import ModelTrainerConfig
 
 
 class ModelTrainer:
@@ -17,8 +20,15 @@ class ModelTrainer:
     def train(self):
 
         # =========================
+        # Set MLflow Experiment
+        # =========================
+        mlflow.set_experiment("Model Comparison")
+
+        # =========================
         # Load Data
         # =========================
+        logger.info("Loading training and test datasets...")
+
         train_data = pd.read_csv(self.config.train_data_path)
         test_data = pd.read_csv(self.config.test_data_path)
 
@@ -50,34 +60,64 @@ class ModelTrainer:
         }
 
         model_report = {}
+        best_model = None
+        best_score = float("-inf")
 
         # =========================
-        # Train & Evaluate
+        # Train & Evaluate Models
         # =========================
         for model_name, model in models.items():
 
             logger.info(f"Training {model_name}...")
 
-            model.fit(train_x, train_y)
-            preds = model.predict(test_x)
+            with mlflow.start_run(run_name=model_name):
 
-            score = r2_score(test_y, preds)
-            model_report[model_name] = score
+                # Train
+                model.fit(train_x, train_y)
 
-            logger.info(f"{model_name} R2 Score: {score}")
+                # Predict
+                preds = model.predict(test_x)
+
+                # Metrics
+                r2 = r2_score(test_y, preds)
+                rmse = mean_squared_error(test_y, preds, squared=False)
+
+                logger.info(f"{model_name} R2 Score: {r2}")
+                logger.info(f"{model_name} RMSE: {rmse}")
+
+                model_report[model_name] = r2
+
+                # =========================
+                # MLflow Logging
+                # =========================
+
+                # Log hyperparameters
+                if hasattr(model, "get_params"):
+                    for param, value in model.get_params().items():
+                        mlflow.log_param(param, value)
+
+                # Log metrics
+                mlflow.log_metric("r2_score", r2)
+                mlflow.log_metric("rmse", rmse)
+
+                # Log model artifact
+                mlflow.sklearn.log_model(model, "model")
+
+                # Track best model
+                if r2 > best_score:
+                    best_score = r2
+                    best_model = model
 
         # =========================
-        # Select Best Model
+        # Identify Best Model
         # =========================
         best_model_name = max(model_report, key=model_report.get)
-        best_model = models[best_model_name]
-        best_score = model_report[best_model_name]
 
         logger.info(f"Best Model Found: {best_model_name}")
         logger.info(f"Best Model Score: {best_score}")
 
         # =========================
-        # Save Best Model as model.joblib
+        # Save Best Model
         # =========================
         os.makedirs(self.config.root_dir, exist_ok=True)
 
@@ -85,8 +125,6 @@ class ModelTrainer:
             self.config.root_dir,
             "model_trainer.joblib"
         )
-
-        
 
         joblib.dump(best_model, best_model_path)
 

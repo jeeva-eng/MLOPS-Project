@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/881380727955219538/c1d8edd4344b45e6a6205656ccfb5131/artifacts
+end_time: 1772272754031
+entry_point_name: ''
+experiment_id: '881380727955219538'
+lifecycle_stage: active
+run_id: c1d8edd4344b45e6a6205656ccfb5131
+run_name: LinearRegression
+run_uuid: c1d8edd4344b45e6a6205656ccfb5131
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772272750146
+status: 3
+tags: []
+user_id: jeeva

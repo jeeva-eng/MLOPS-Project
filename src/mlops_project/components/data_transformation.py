@@ -12,24 +12,37 @@ from src.mlops_project.entity.config_entity import DataTransformationConfig
 
 
 class DataTransformation:
+
     def __init__(self, config: DataTransformationConfig):
         self.config = config
 
-    def train_test_spliting(self):
+    def train_test_splitting(self):
 
         data = pd.read_csv(self.config.data_path)
 
-        train, test = train_test_split(data, test_size=0.25, random_state=42)
+        train_df, test_df = train_test_split(
+            data,
+            test_size=0.25,
+            random_state=42
+        )
 
-        train.to_csv(os.path.join(self.config.root_dir, "train.csv"), index=False)
-        test.to_csv(os.path.join(self.config.root_dir, "test.csv"), index=False)
+        os.makedirs(self.config.root_dir, exist_ok=True)
 
-        logger.info("Splitted data into training and test sets")
-        logger.info(f"Train shape: {train.shape}")
-        logger.info(f"Test shape: {test.shape}")
+        train_df.to_csv(
+            os.path.join(self.config.root_dir, "train.csv"),
+            index=False
+        )
 
-        return train, test
+        test_df.to_csv(
+            os.path.join(self.config.root_dir, "test.csv"),
+            index=False
+        )
 
+        logger.info("Data split into train and test sets")
+        logger.info(f"Train shape: {train_df.shape}")
+        logger.info(f"Test shape: {test_df.shape}")
+
+        return train_df, test_df
 
     def get_data_transformer_object(self, train_df):
 
@@ -37,7 +50,9 @@ class DataTransformation:
 
         input_features = train_df.drop(columns=[target_column])
 
-        numerical_columns = input_features.select_dtypes(include=["int64", "float64"]).columns.tolist()
+        numerical_columns = input_features.select_dtypes(
+            include=["int64", "float64"]
+        ).columns.tolist()
 
         logger.info(f"Numerical Columns: {numerical_columns}")
 
@@ -55,10 +70,9 @@ class DataTransformation:
 
         return preprocessor
 
-
     def initiate_data_transformation(self):
 
-        train_df, test_df = self.train_test_spliting()
+        train_df, test_df = self.train_test_splitting()
 
         target_column = self.config.target_column
 
@@ -74,7 +88,10 @@ class DataTransformation:
         input_test_arr = preprocessor.transform(input_test)
 
         # Save preprocessor
-        joblib.dump(preprocessor, os.path.join(self.config.root_dir, "preprocessor.pkl"))
+        joblib.dump(
+            preprocessor,
+            os.path.join(self.config.root_dir, "preprocessor.pkl")
+        )
 
         logger.info("Preprocessor saved successfully")
 

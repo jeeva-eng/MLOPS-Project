@@ -169,6 +169,8 @@ dmypy.json
 cython_debug/
 
 artifacts/*
+!artifacts/model_trainer/
+!artifacts/model_trainer/*.joblib
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

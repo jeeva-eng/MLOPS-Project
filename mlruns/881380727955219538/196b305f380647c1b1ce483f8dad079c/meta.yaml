@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/881380727955219538/196b305f380647c1b1ce483f8dad079c/artifacts
+end_time: 1772272758082
+entry_point_name: ''
+experiment_id: '881380727955219538'
+lifecycle_stage: active
+run_id: 196b305f380647c1b1ce483f8dad079c
+run_name: model_trainer
+run_uuid: 196b305f380647c1b1ce483f8dad079c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772272754075
+status: 3
+tags: []
+user_id: jeeva

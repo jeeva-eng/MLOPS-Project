@@ -14,13 +14,13 @@ class DataValidationConfig:
     root_dir:Path
     STATUS_FILE:str
     unzip_data_dir:Path
-    all_schema:dict    
+    all_schema:dict 
 
 @dataclass(frozen=True)
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
-    target_column: str
+    target_column:str
 
 @dataclass(frozen=True)
 class ModelTrainerConfig:
@@ -47,4 +47,4 @@ class ModelEvaluationConfig:
     all_params:dict
     metric_file_name:Path
     target_columns:str
-    mlflow_uri:str    
+    mlflow_uri:str
