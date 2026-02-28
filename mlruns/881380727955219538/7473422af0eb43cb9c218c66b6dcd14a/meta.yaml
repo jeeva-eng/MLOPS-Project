@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/881380727955219538/7473422af0eb43cb9c218c66b6dcd14a/artifacts
+end_time: 1772276448358
+entry_point_name: ''
+experiment_id: '881380727955219538'
+lifecycle_stage: active
+run_id: 7473422af0eb43cb9c218c66b6dcd14a
+run_name: ElasticNet
+run_uuid: 7473422af0eb43cb9c218c66b6dcd14a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772276444417
+status: 3
+tags: []
+user_id: jeeva
