@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jeeva/Desktop/MLOPS-Project/mlruns/881380727955219538/915dbe4d17cc4f02b1b5369e911348e3/artifacts
+end_time: 1772277400087
+entry_point_name: ''
+experiment_id: '881380727955219538'
+lifecycle_stage: active
+run_id: 915dbe4d17cc4f02b1b5369e911348e3
+run_name: RandomForest
+run_uuid: 915dbe4d17cc4f02b1b5369e911348e3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772277395201
+status: 3
+tags: []
+user_id: jeeva
